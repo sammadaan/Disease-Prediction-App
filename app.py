@@ -16,15 +16,21 @@ def load_lottie(url):
     except requests.exceptions.RequestException as e:
         print(f"Request Exception: {e}")
         return None
+import joblib
+import os
 
-# Load ML Models
+# Define model directory (use relative paths)
+model_dir = os.path.join(os.path.dirname(__file__), "Models")
+
+# Load Models
 models = {
-    "Diabetes": joblib.load(r"C:\Users\pc\Desktop\med\Models\diabetes_rf_model.pkl"),
-    "Heart Disease": joblib.load(r"C:\Users\pc\Desktop\med\Models\heart_disease_rf_model.pkl"),
-    "Hypothyroid": joblib.load(r"C:\Users\pc\Desktop\med\Models\hypothyroid_rf_model.pkl"),
-    "Lung Cancer": joblib.load(r"C:\Users\pc\Desktop\med\Models\lung_cancer_svc_model.pkl"),
-    "Parkinson’s": joblib.load(r"C:\Users\pc\Desktop\med\Models\parkinsons_random_forest.pkl")
+    "Diabetes": joblib.load(os.path.join(model_dir, "diabetes_rf_model.pkl")),
+    "Heart Disease": joblib.load(os.path.join(model_dir, "heart_disease_rf_model.pkl")),
+    "Hypothyroid": joblib.load(os.path.join(model_dir, "hypothyroid_rf_model.pkl")),
+    "Lung Cancer": joblib.load(os.path.join(model_dir, "lung_cancer_svc_model.pkl")),
+    "Parkinson’s": joblib.load(os.path.join(model_dir, "parkinsons_random_forest.pkl")),
 }
+
 
 # Load Animations
 loading_animation = load_lottie('https://lottie.host/6f5fbbd6-eda4-48c7-a0d2-52a307f635ee/V5MbdClBCy.json')

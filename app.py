@@ -61,20 +61,25 @@ columns = expected_columns[disease]
 st.subheader(f"Enter Details for {disease}")
 user_input = []
 for col in columns:
-    user_input.append(st.number_input(f"{col}", value=0.0 if '.' in str(col) else 0))
+    val = st.number_input(f"{col}", value=0.0 if '.' in str(col) else 0)
+    user_input.append(0 if val is None else val)
 
 # Predict button
 if st.button("Predict"):
     if None in user_input or len(user_input) != len(columns):
         st.warning("Please complete all fields.")
     else:
-        input_df = pd.DataFrame([user_input], columns=columns)
-        prediction = model.predict(input_df)[0]
-        if prediction == 1:
-            if success_animation:
-                st_lottie(success_animation, height=150)
-            st.error(f"⚠️ You may have {disease}. Consult a doctor.")
-        else:
-            if error_animation:
-                st_lottie(error_animation, height=150)
-            st.success(f"✅ You do NOT have {disease}. Stay healthy!")
+        try:
+            user_input = [float(val) for val in user_input]
+            input_df = pd.DataFrame([user_input], columns=columns)
+            prediction = model.predict(input_df)[0]
+            if prediction == 1:
+                if success_animation:
+                    st_lottie(success_animation, height=150)
+                st.error(f"⚠️ You may have {disease}. Consult a doctor.")
+            else:
+                if error_animation:
+                    st_lottie(error_animation, height=150)
+                st.success(f"✅ You do NOT have {disease}. Stay healthy!")
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")

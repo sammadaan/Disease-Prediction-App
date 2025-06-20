@@ -28,13 +28,20 @@ models = {
     "Parkinson's": joblib.load(os.path.join(model_dir, "parkinsons_random_forest.pkl")),
 }
 
-# Define expected columns for each disease
+# Feature columns that exactly match the model training format
 expected_columns = {
     "Diabetes": ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age'],
     "Heart Disease": ['Age', 'Sex', 'ChestPainType', 'RestingBP', 'Cholesterol', 'FBS', 'RestECG', 'MaxHR', 'ExerciseAngina', 'Oldpeak', 'Slope', 'Ca', 'Thal'],
     "Hypothyroid": ['TSH', 'T3', 'TT4', 'T4U', 'FTI'],
-    "Lung Cancer": ['Age', 'Smokes', 'Coughing', 'ShortBreath', 'Wheezing', 'SwallowingDiff', 'ChestPain', 'FrequentCold', 'Fatigue', 'WeightLoss', 'Hoarseness', 'Pollution', 'Asbestos', 'FamilyHistory', 'Pneumonia', 'LungNodules'],
-    "Parkinson's": ['Fo', 'Fhi', 'Flo', 'Jitter', 'Shimmer', 'HNR']
+    "Lung Cancer": [
+        "AGE", "GENDER", "SMOKING", "YELLOW_FINGERS", "ANXIETY", "PEER_PRESSURE",
+        "CHRONIC DISEASE", "FATIGUE ", "ALLERGY", "WHEEZING", "ALCOHOL CONSUMING",
+        "COUGHING", "SHORTNESS OF BREATH", "SWALLOWING DIFFICULTY", "CHEST PAIN"
+    ],
+    "Parkinson's": [
+        "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)",
+        "MDVP:Shimmer(dB)", "HNR"
+    ]
 }
 
 # Load animations

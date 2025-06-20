@@ -35,7 +35,7 @@ expected_columns = {
     "Hypothyroid": ['TSH', 'T3', 'TT4', 'T4U', 'FTI'],
     "Lung Cancer": [
         "AGE", "GENDER", "SMOKING", "YELLOW_FINGERS", "ANXIETY", "PEER_PRESSURE",
-        "CHRONIC DISEASE", "FATIGUE ", "ALLERGY", "WHEEZING", "ALCOHOL CONSUMING",
+        "CHRONIC DISEASE", "FATIGUE ", "WHEEZING", "ALCOHOL CONSUMING",
         "COUGHING", "SHORTNESS OF BREATH", "SWALLOWING DIFFICULTY", "CHEST PAIN"
     ],
     "Parkinson's": [
